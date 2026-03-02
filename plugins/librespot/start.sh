@@ -1,5 +1,4 @@
 #!/bin/sh
-#audio_backend: pulseaudio  removed temporarly from line 28
 CONFIG_DIR="/config"
 CONFIG_PATH="$CONFIG_DIR/config.yml"
 
@@ -9,6 +8,7 @@ SOUND_DEVICE_NAME=${SOUND_DEVICE_NAME:-"balenaSound Spotify $(echo "$BALENA_DEVI
 SOUND_DEVICE_NAME=${SOUND_DEVICE_NAME}
 SOUND_SPOTIFY_BITRATE=${SOUND_SPOTIFY_BITRATE:-160}
 SOUND_SPOTIFY_INITIAL_VOLUME="${SOUND_SPOTIFY_INITIAL_VOLUME:-50}"
+SOUND_SPOTIFY_BACKEND=${SOUND_SPOTIFY_BACKEND:-alsa}
 LOG_LEVEL=${LOG_LEVEL:-info}
 
 if [ "$SOUND_SPOTIFY_DISABLE_NORMALISATION" = "1" ]; then
@@ -25,6 +25,7 @@ fi
 cat > "$CONFIG_PATH" <<EOF
 log_level: $LOG_LEVEL
 device_name: $SOUND_DEVICE_NAME
+audio_backend: $SOUND_SPOTIFY_BACKEND
 device_type: speaker
 initial_volume: $SOUND_SPOTIFY_INITIAL_VOLUME
 bitrate: $SOUND_SPOTIFY_BITRATE

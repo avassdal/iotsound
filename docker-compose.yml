@@ -1,4 +1,4 @@
-version: "2"
+version: "2.1"
 
 volumes:
   spotifycache:
@@ -41,7 +41,7 @@ services:
   # -- Remove unwanted plugins as needed
   bluetooth:
     build: ./plugins/bluetooth
-    restart: on-failure
+    restart: unless-stopped
     network_mode: host
     cap_add:
       - NET_ADMIN
@@ -61,12 +61,11 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
+    depends_on:
+      - audio
    
-  # https://github.com/balenablocks/hostname
   hostname:
-    build: ./core/hostname
-    restart: no
-    labels:
-      io.balena.features.supervisor-api: 1
-    environment:
-      SET_HOSTNAME: balena
+   build: ./core/hostname
+   restart: no
+   labels:
+     io.balena.features.supervisor-api: 1
