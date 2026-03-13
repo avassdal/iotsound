@@ -20,13 +20,10 @@ data:
   applicationEnvironmentVariables:
     - SOUND_VOLUME: 75
     - AUDIO_OUTPUT: AUTO
-  defaultDeviceType: raspberry-pi
+  defaultDeviceType: raspberrypi3
   supportedDeviceTypes:
-    - raspberry-pi
-    - raspberry-pi2
     - raspberrypi3
     - raspberrypi3-64
     - raspberrypi4-64
-    - fincm3
-    - intel-nuc
+    - raspberrypi5
 version: 4.2.1

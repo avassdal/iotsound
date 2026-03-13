@@ -43,7 +43,7 @@ services:
     container_name: iotsound-wifi-watchdog
     privileged: true
     network_mode: host
-    restart: unless-stopped
+    restart: on-failure
     logging:
       driver: "json-file"
       options:
@@ -55,7 +55,7 @@ services:
   # -- Remove unwanted plugins as needed
   bluetooth:
     build: ./plugins/bluetooth
-    restart: unless-stopped
+    restart: on-failure
     network_mode: host
     cap_add:
       - NET_ADMIN
