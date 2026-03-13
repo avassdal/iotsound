@@ -74,9 +74,10 @@ export default class SoundAPI {
 
     // Support endpoint -- Gathers information for troubleshooting
     this.api.get('/support', asyncHandler(async (_req, res) => {
+      const { mode, device, multiroom } = this.config
       res.json({
         version: VERSION,
-        config: this.config,
+        config: { mode, device, multiroom },
         audio: await this.audioBlock.getInfo(),
         sinks: stringify(await this.audioBlock.getSinks()),
         volume: await this.audioBlock.getVolume(),
